@@ -16,7 +16,7 @@ const WordRelayHooks = () =>{
             inputRef.current.focus();
         }else{
             setValue("");
-            setResult("땡!!!");
+            setResult("땡");
             inputRef.current.focus();
         }
     };
