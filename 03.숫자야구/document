@@ -1,0 +1,36 @@
+require => Node 의 모듈 시스템
+    require 와 import 는 약간의 호환을 함
+        ex) const React = require('react'); => import React from 'react';
+
+    class Test {...} / module.exports = Test; => const Test = require('.../...'); , Test = class Test {...}
+
+    export const test = "test"; => import {test}            // 여러개 사용이 가능
+    export default Test;  => import Test                    // 한번말 사용 가능
+
+    export cont hello = 'hello';    => import {hello}
+    export default Temp; => import Temp;
+
+    const Hello = require("Hello");
+    export.hello = "hello";
+    module.exports = Temp;
+
+Node => require 사용 , React => import / export 사용
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
