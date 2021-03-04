@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>01.구구단</title>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+    const e =React.createElement;
+
+    class GuGuDan extends React.Component {
+        // constructor(props) {
+        //     super(props);
+        //     this.state = {
+        //         first: Math.ceil(Math.random() * 9),
+        //         second: Math.ceil(Math.random() * 9),
+        //         value : '',
+        //         lastValue :'',
+        //         result: ''
+        //     };
+        // }
+
+        // constructor 사용 안해도 됨
+        state = {
+            first: Math.ceil(Math.random() * 9),
+            second: Math.ceil(Math.random() * 9),
+            value : '',
+            result: ''
+        }
+
+        // function 함수 사용X , => 함수 사용O
+        onSubmit = (e) => {
+            e.preventDefault();
+            if(parseInt(this.state.value) === this.state.first * this.state.second){
+                // this.state. ~ 사용시 이전상태값 (prevState) , return 을 이용하여 작성
+                // 이전상태와 변화 상태의 구분을 위하여
+                this.setState((prevState) => {
+                    return {
+                        first:Math.ceil(Math.random() * 9),
+                        second:  Math.ceil(Math.random() * 9),
+                        value:'',
+                        result:'정답 :' + prevState.value,
+                    }
+                });
+                this.input.focus();
+            }else{
+                this.setState({
+                    value: '',
+                    result : "땡"
+                });
+                this.input.focus();
+            }
+        };
+
+        onChange = (e) => {
+            this.setState({value: e.target.value})
+        };
+
+        input;                          // ref => dom 에 직접 접근시 사용
+        onRefInput = (e) => {this.input = e};
+
+        render(){                       // setState 를 할때마다 render 함수가 실행이 된다.
+                                        // 메소드를 따로 빼주지 않으면 render가 실행 될때마다 새로운 메소드가 생성이 됨
+            return (
+                // <React.Fragment>  <div></div> 대신 해줌으로써 불필요한 div를 제거
+                <React.Fragment>
+                    <div>
+                        {this.state.first} * {this.state.second} =
+                    </div>
+                    <form onSubmit={this.onSubmit}>
+                        <input ref={this.onRefInput} type='number' value={this.state.value} onChange={this.onChange} />
+                        <button type="submit">입력!</button>
+                    </form>
+                    <div>
+                        {this.state.result}
+                    </div>
+                </React.Fragment>
+            )
+        }
+    }
+</script>
+<script type="text/babel">
+    ReactDOM.render(<GuGuDan/>,document.querySelector("#root"));
+</script>
+</body>
+</html>

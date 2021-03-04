@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>01.구구단</title>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+    // Hooks 는 Class 와 다르게 State 가 변경 될때 마다 함수 전체가 재실해 되기 때문에 Class 보다 조금 더 느릴수 있다.
+    // Class 는 Render 함수만 재실행
+    // HTML 의 class => className 으로 사용
+    // HTML 의 for => htmlFor 으로 사용
+
+    const GuGuDan = () => {
+        const [first , setFirst] = React.useState(Math.ceil(Math.random() * 9));
+        const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+        const [value , setValue] = React.useState('');
+        const [result, setResult] = React.useState('');
+        const inputRef = React.useRef(null);
+
+        const onSubmitForm = (e) => {
+            e.preventDefault();
+            if(parseInt(value) === first * second){
+                setFirst(Math.ceil(Math.random() * 9));
+                setSecond(Math.ceil(Math.random() * 9));
+                setValue("");
+                setResult("정답: "+ value);
+                inputRef.current.focus();
+            }else{
+                setValue("");
+                setResult("땡");
+                inputRef.current.focus();
+            }
+        }
+
+        const onChange = (e) => {
+            setValue(e.target.value);
+        }
+
+        return (
+            <React.Fragment>
+                <div>
+                    {first} * {second} =
+                </div>
+                <form onSubmit={onSubmitForm}>
+                    <input ref={inputRef} type='number' value={value} onChange={onChange} />
+                    <button type="submit">입력!</button>
+                </form>
+                <div>
+                    {result}
+                </div>
+            </React.Fragment>
+        )
+    }
+</script>
+<script type="text/babel">
+    ReactDOM.render(<GuGuDan/>,document.querySelector("#root"));
+</script>
+</body>
+</html>
