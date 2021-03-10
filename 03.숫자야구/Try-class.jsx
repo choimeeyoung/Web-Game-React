@@ -1,14 +1,15 @@
-import React , {Component} from 'react';
+import React, { PureComponent } from 'react';
 
-class TryClass extends Component{
-    render(){
-        const {tryInfo} = this.props;
+class TryClass extends PureComponent {
+    render() {
+        const { tryInfo } = this.props;
+        console.log("렌더링")
         return (
             <li>
-                <div>입력값 : {tryInfo.try}</div>
-                <div>결과 : {tryInfo.result}</div>
+                <div>{tryInfo.try}</div>
+                <div>{tryInfo.result}</div>
             </li>
-        )
+        );
     }
 }
 
