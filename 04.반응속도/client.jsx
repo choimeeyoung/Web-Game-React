@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ResponseCheckClass from "./ResponseCheck-class";
+// import ResponseCheckClass from "./ResponseCheck-class";
+import ResponseCheckHooks from "./ResponseCheck-hooks";
 
-ReactDOM.render(<ResponseCheckClass />, document.querySelector('#root'));
+ReactDOM.render(<ResponseCheckHooks />, document.querySelector('#root'));
